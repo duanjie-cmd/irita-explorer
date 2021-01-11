@@ -130,10 +130,6 @@ let config = {
     bgColor: {
       common: '',
     },
-  },
-  // 屏蔽选项
-  shielding: {
-    fee: true
   }
 }
 module.exports = config
