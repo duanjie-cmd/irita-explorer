@@ -27,7 +27,7 @@
 						</el-table>
 					</div>
 					<div class="pagination_content">
-						<m-pagination :page-size="pageSize" :total="dataCount" :page="pageNumber" :page-change="pageChange"></m-pagination>
+						<m-pagination model="exact" :page-size="pageSize" :total="dataCount" :page="pageNumber" :page-change="pageChange"></m-pagination>
 					</div>
 				</div>
 			</div>
@@ -51,7 +51,10 @@
 				dataCount: 0,
 				latestBlockHeight:0,
 				blockList: [],
-				blockListTimer: null
+				blockListTimer: null,
+				state: '',
+				currentMaxHeight: 0,
+				currentMinHeight: 0,
 			}
 		},
 		mounted () {
@@ -61,10 +64,16 @@
 			async getBlocks () {
 				this.latestBlock();
 				try {
-					let blockData = await getBlockList(this.pageNumber, this.pageSize, true);
+					let blockData = await getBlockList(this.state, this.currentMaxHeight,this.currentMinHeight,this.pageSize, true);
 					if(blockData){
 						this.dataCount = blockData.count;
-						this.blockList = blockData.data.map( item => {
+						this.blockList = blockData.data.map( (item,index) => {
+							if(index == 0) {
+								this.currentMaxHeight = item.height
+							}
+							if(index == blockData.data.length - 1) {
+								this.currentMinHeight = item.height
+							}
 							return{
 								height: item.height,
 								time: Tools.getDisplayDate(item.time),
@@ -95,9 +104,10 @@
 					console.error(e)
 				}				
 			},
-			pageChange(pageNum){
+			pageChange(pageNum,state){
 				if (this.pageNumber == pageNum) {return;}
 				this.pageNumber = pageNum;
+				this.state = state;
 				this.getBlocks()
 			}
 		}

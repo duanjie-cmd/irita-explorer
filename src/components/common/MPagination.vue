@@ -54,12 +54,16 @@ export default {
             //rang升序
             type: Boolean,
             default: true
+        },
+        model: {
+            type: String, // exect
         }
     },
     data() {
         return {
             currentPage: 1,
-            currentRange: []
+            currentRange: [],
+            state: ''
         };
     },
     computed: {
@@ -81,13 +85,22 @@ export default {
     methods: {
         toFrist() {
             this.currentPage = 1;
+            if(this.model == 'exact') {
+                this.state = 'first';
+            }
         },
         toEnd() {
             this.currentPage = this.totalPages;
+            if(this.model == 'exact') {
+                this.state = 'end';
+            }
         },
         prev() {
             if (this.currentPage > 1) {
                 this.currentPage = this.currentPage - 1;
+                if(this.model == 'exact') {
+                    this.state = 'prev';
+                }
             }
         },
         after() {
@@ -95,10 +108,16 @@ export default {
                 if (!this.ascending) {
                     if (this.currentRange[1] > 1) {
                         this.currentPage = this.currentPage + 1;
+                        if(this.model == 'exact') {
+                            this.state = 'after';
+                        }
                     }
                 } else {
                     if (this.currentRange[1] < this.total) {
                         this.currentPage = this.currentPage + 1;
+                        if(this.model == 'exact') {
+                            this.state = 'after';
+                        }
                     }
                 }
             }
@@ -128,8 +147,13 @@ export default {
             this.currentPage = newVal;
         },
         currentPage(newVal) {
-            this.pageChange(newVal);
-            this.forRange();
+            if(this.model == 'exact') {
+                this.pageChange(newVal,this.state);
+                this.forRange();
+            } else {
+                this.pageChange(newVal);
+                this.forRange();
+            }
         },
         range(newVal) {
             this.currentRange = newVal;

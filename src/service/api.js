@@ -49,8 +49,8 @@ export function getNetworkStatistics(params){
 	return get(url);
 }
 
-export function getBlockList(pageNum, pageSize, useCount=false){
-	let url = `blocks?pageNum=${pageNum || ''}&pageSize=${pageSize | ''}&useCount=${useCount}`;
+export function getBlockList(state, currentMaxHeight, currentMinHeight,pageSize,useCount=false){
+	let url = `blocks?state=${state}&currentMaxHeight=${currentMaxHeight}&currentMinHeight=${currentMinHeight}&pageSize=${pageSize}&useCount=${useCount}`;
 	return get(url);
 }
 
