@@ -16,7 +16,7 @@
 					</div>
 					<div class="block_list_pagination_content">
 						<el-table class="table"  :data="blockList" :empty-text="$t('ExplorerLang.table.emptyDescription')">
-							<el-table-column :min-width="ColumnMinWidth.blockListHeight" :label="$t('ExplorerLang.table.block')">
+							<el-table-column :min-width="150" :label="$t('ExplorerLang.table.block')">
 								<template slot-scope="scope">
 									<router-link :to="`/block/${scope.row.height}`">{{scope.row.height}}</router-link>
 								</template>
@@ -30,11 +30,11 @@
 										<span v-if="scope.row.proposerAddress === '--'">--</span>
 								</template>
 							</el-table-column>
-							<el-table-column :min-width="ColumnMinWidth.txn" prop="numTxs" :label="$t('ExplorerLang.table.transactions')"></el-table-column>
+							<el-table-column :min-width="150" prop="numTxs" :label="$t('ExplorerLang.table.transactions')"></el-table-column>
 							<!-- <el-table-column v-if="productionConfig.blockList.validtors" :min-width="ColumnMinWidth.validatorValue" prop="validatorValue" :label="$t('ExplorerLang.table.validators')"></el-table-column> -->
 							<!-- <el-table-column v-if="productionConfig.blockList.votingPower" :min-width="ColumnMinWidth.votingPowerValue" prop="votingPowerValue" :label="$t('ExplorerLang.table.votingPower')"></el-table-column> -->
-							<el-table-column :min-width="ColumnMinWidth.time" prop="time" :label="$t('ExplorerLang.table.timestamp')"></el-table-column>
-							<el-table-column :min-width="ColumnMinWidth.blockAge" prop="ageTime" :label="$t('ExplorerLang.table.age')"></el-table-column>
+							<el-table-column :min-width="150" prop="time" :label="$t('ExplorerLang.table.timestamp')"></el-table-column>
+							<el-table-column :min-width="150" align="center" prop="ageTime" :label="$t('ExplorerLang.table.age')"></el-table-column>
 						</el-table>
 					</div>
 					<div class="pagination_content">

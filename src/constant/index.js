@@ -26,9 +26,10 @@ export const TX_TYPE = {
   start_request_context: 'start_request_context',
   kill_request_context: 'kill_request_context',
   update_request_context: 'update_request_context',
-  create_record: 'create_record',
   service_set_withdraw_address: 'service/set_withdraw_address',
   withdraw_earned_fees: 'withdraw_earned_fees',
+  // Record
+  create_record: 'create_record',
   // nft
   burn_nft: 'burn_nft',
   transfer_nft: 'transfer_nft',
@@ -132,9 +133,10 @@ export const TX_TYPE_DISPLAY = {
   start_request_context: 'StartRequestContext',
   kill_request_context: 'KillRequestContext',
   update_request_context: 'UpdateRequestContext',
-  create_record: 'CreateRecord',
   'service/set_withdraw_address': 'ServiceSetWithdrawAddress',
   withdraw_earned_fees: 'WithdrawEarnedFees',
+  // Record
+  create_record: 'CreateRecord',
   // nft
   burn_nft: 'NFTBurn',
   transfer_nft: 'NFTTransfer',
@@ -260,9 +262,11 @@ export const ColumnMinWidth = {
   requestHash: '138',
   blockHeight: '85',
   blockListHeight: '85',
-  txType: '258',
+  // txType: '258',
+  txType: '198',
   govTxType: '120',
   address: '165',
+  fightPocAddress: '120',
   iaaAddress: '139',
   time: prodConfig.isShowUTC === false ? '158' : '205',
   txn: '115',

@@ -4,12 +4,12 @@
             <div class="tx_content_header_wrap">
                 <div class="total_tx_content">{{txCount}} {{$t('ExplorerLang.transactions.txs')}}</div>
                     <div class="tx_type_mobile_content">
-                        <!--<el-select popper-class="tooltip" v-model="value" filterable :change="filterTxByTxType(value)">
+                        <!-- <el-select  popper-class="tooltip" v-model="value" filterable :change="filterTxByTxType(value)">
                             <el-option v-for="(item, index) in txTypeOption"
                                        :key="index"
                                        :label="item.label"
                                        :value="item.value"></el-option>
-                        </el-select>-->
+                        </el-select> -->
                         
                         <el-cascader
                             class="tx_type_transactions"
@@ -105,6 +105,7 @@
                 TX_STATUS,
                 transactionArray : [],
                 txCount : 0,
+                selectTxTypeOption: [],
                 txTypeOption : [],
                 statusOpt : [
                     {
@@ -164,13 +165,13 @@
                 param == 'init' ? history.replaceState(null, null, url) : history.pushState(null, null, url);
                 this.getTxList();
             },
-            /*filterTxByTxType(e){
+            filterTxByTxType(e){
                 if(e === 'allTxType' || e === undefined){
                     this.TxType = ''
                 } else {
                     this.TxType = e
                 }
-            },*/
+            },
             resetUrl(){
                 this.beginTime = '';
                 this.endTime = '';
@@ -208,6 +209,12 @@
                         slot : 'allTxType',
                     });
                     this.txTypeOption = typeList;
+                    this.selectTxTypeOption = res.data.map(type => {
+                        return {
+                            value: type.typeName,
+                            label: type.typeName
+                        }
+                    });
                 }catch (e) {
                     console.error(e);
                     // this.$message.error(this.$t('ExplorerLang.message.requestFailed'));
