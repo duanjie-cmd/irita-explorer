@@ -168,7 +168,7 @@ export const ExplorerLang = {
         validatorSet:'Validator Set'
     },
     transactions:{
-        txs: '交易',
+        txs: '个交易',
         search: '搜索',
         status: '交易状态',
         // 新增
@@ -209,7 +209,7 @@ export const ExplorerLang = {
         createTime: '创建时间',
     },
     service: {
-        services: '服务',
+        services: '个服务',
         from: '创建者',
         description: '描述',
         status: '服务状态',
