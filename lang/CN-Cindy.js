@@ -209,7 +209,7 @@ export const ExplorerLang = {
         createTime: '创建时间',
     },
     service: {
-        services: '个服务',
+        services: '项服务',
         from: '创建者',
         description: '描述',
         status: '服务状态',
